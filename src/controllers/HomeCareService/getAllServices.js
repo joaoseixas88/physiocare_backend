@@ -1,16 +1,16 @@
-import { User } from "../../models/User";
+const { User } = require("../../models/User");
 
-export const getAllServices = async (req, res) =>{
-  const { id } = req.user
+module.exports = async function getAllServices(req, res){
+	const { id } = req.user;
 
-  try {
-    const user = await User.findById(id)
+	try {
+		const user = await User.findById(id);
 
-    const { homeCareServices } = user
+		const { homeCareServices } = user;
 
-    return res.status(200).json(homeCareServices)
+		return res.status(200).json(homeCareServices);
 
-  } catch (error) {
-    return res.status(400).json({errors: ['Something went wrong']})
-  }
-}
+	} catch (error) {
+		return res.status(400).json({errors: ["Something went wrong"]});
+	}
+};

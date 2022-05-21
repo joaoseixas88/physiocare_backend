@@ -1,23 +1,24 @@
+const { User } = require("../../models/User");
 
-import { User } from "../../models/User"
+async function updateUser(req, res){
+	const { id } = req.user;
+	const { name, email } = req.body;
 
-export default async function updateUser(req, res){
-  const { id } = req.user
-  const { name, email } = req.body
+	try {
 
-  try {
-
-    const user = await User.findByIdAndUpdate(id,
-      { name, email },
-      {returnDocument: 'after'})
+		const user = await User.findByIdAndUpdate(id,
+			{ name, email },
+			{returnDocument: "after"});
 
 
-    return res.json(user)
+		return res.json(user);
 
-  } catch (error) {
-    if(error.code === 11000){
-      return res.status(400).json({errors: ['Email already in use']})
-    }
-    return res.status(400).json({error: 'Something went wrong'})
-  }
+	} catch (error) {
+		if(error.code === 11000){
+			return res.status(400).json({errors: ["Email already in use"]});
+		}
+		return res.status(400).json({error: "Something went wrong"});
+	}
 }
+
+module.exports = updateUser;

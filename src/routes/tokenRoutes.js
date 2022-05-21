@@ -1,9 +1,10 @@
-import { Router } from 'express'
-import { generateToken } from '../controllers/Token/generateToken'
+const express = require("express");
+
+const { generateToken } = require("../controllers/Token/generateToken");
+
+const app = express.Router();
 
 
-const app = new Router()
+app.post("/",generateToken);
 
-app.post('/',generateToken)
-
-export default app
+module.exports =  app;

@@ -1,30 +1,29 @@
-import jwt from 'jsonwebtoken';
-import { User } from "../models/User"
+const jwt = require("jsonwebtoken");
 
 const loginRequired = async (req, res, next) => {
-  const { authorization } = req.headers;
+	const { authorization } = req.headers;
 
-  if (!authorization) {
-    return res.status(401).json({ errors: ['Login required'] });
-  }
-  const [bearer, token] = authorization.split(' ');
+	if (!authorization) {
+		return res.status(401).json({ errors: ["Login required"] });
+	}
+	const [, token] = authorization.split(" ");
 
-  try {
-    const data = await jwt.verify(token, process.env.TOKEN_SECRET);
+	try {
+		const data = await jwt.verify(token, process.env.TOKEN_SECRET);
 
-    const { id, email } = data;
+		const { id, email } = data;
 
 
-    req.user = {
-      id, email
-    }
+		req.user = {
+			id, email
+		};
 
-    return next();
+		return next();
 
-  } catch (err) {
-    return res.status(401).json({ errors: ['Expired or invalid token'] });
-  }
+	} catch (err) {
+		return res.status(401).json({ errors: ["Expired or invalid token"] });
+	}
 };
 
 
-export { loginRequired }
+module.exports =  { loginRequired };

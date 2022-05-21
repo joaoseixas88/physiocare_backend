@@ -1,18 +1,21 @@
-import { Router } from "express";
-import { createHomeCareService } from "../controllers/HomeCareService/createHomeCareService";
-import { deleteHomeCareService } from "../controllers/HomeCareService/deleteHomeCareService";
-import { getAllServices } from "../controllers/HomeCareService/getAllServices";
-import { updateHomeCareService } from "../controllers/HomeCareService/updateHomeCareById";
+const express = require("express");
+const createHomeCareService = require("../controllers/HomeCareService/createHomeCareService");
+const deleteHomeCareService = require("../controllers/HomeCareService/deleteHomeCareService");
+const getAllServices = require("../controllers/HomeCareService/getAllServices");
+const updateHomeCareService = require("../controllers/HomeCareService/updateHomeCareById");
 
-const app = Router()
+const app = express.Router();
 
 
-app.post('/',createHomeCareService)
 
-app.get('/services',getAllServices)
 
-app.delete('/',deleteHomeCareService)
 
-app.put('/',updateHomeCareService)
+app.post("/",createHomeCareService);
 
-export default app
+app.get("/services",getAllServices);
+
+app.delete("/",deleteHomeCareService);
+
+app.put("/",updateHomeCareService);
+
+module.exports =  app;

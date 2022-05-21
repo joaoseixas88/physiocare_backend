@@ -1,15 +1,15 @@
-import createUser from './createUser'
-import findUserById from './findUserById'
-import updateUser from './updateUser'
-import deleteUser from './deleteUser'
+const  createUser  = require("./createUser");
+const  findUserById  = require("./findUserById");
+const  updateUser  = require("./updateUser");
+const  deleteUser  = require("./deleteUser");
 
 
 
 const userController = {
-  createUser,
-  findUserById,
-  updateUser,
-  deleteUser
-}
+	createUser,
+	findUserById,
+	updateUser,
+	deleteUser
+};
 
-export {userController}
+module.exports = { userController };

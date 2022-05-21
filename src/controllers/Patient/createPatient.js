@@ -1,28 +1,20 @@
+const { Patient } = require("../../models/Patient");
 
-import { Patient } from "../../models/Patient"
+module.exports = async function createPatient(req, res){
 
-export default async function createPatient(req, res){
-  const {
-    name,
-    price ,
-    diagnosis,
-    age,
-    weekDays,
-    visits,
-    user_id } = req.body
-    const { id } = req.user
+	const { id } = req.user;
 
-    try {
-      const patient = await Patient.create({...req.body, user_id: id})
+	try {
+		const patient = await Patient.create({...req.body, user_id: id});
 
-      return res.status(201).json(patient)
+		return res.status(201).json(patient);
 
-    } catch (err) {
-      return res.status(400).json({errors: ['Something went wrong']})
-    }
+	} catch (err) {
+		return res.status(400).json({errors: ["Something went wrong"]});
+	}
 
 
 
-}
+};
 
 

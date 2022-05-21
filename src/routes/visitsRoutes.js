@@ -1,18 +1,18 @@
-import { Router } from "express";
-import { addNewVisit } from "../controllers/Visits/addNewVisit";
-import { deleteVisit } from "../controllers/Visits/deleteVisit";
-import getAllVisits from "../controllers/Visits/getAllVisits";
-import { updateVisit } from "../controllers/Visits/updateVisit";
-const app = Router()
+const express = require("express");
+const addNewVisit = require("../controllers/Visits/addNewVisit");
+const deleteVisit = require("../controllers/Visits/deleteVisit");
+const getAllVisits = require("../controllers/Visits/getAllVisits");
+const updateVisit = require("../controllers/Visits/updateVisit");
+const app = express.Router();
 
 
-app.post('/',addNewVisit)
+app.post("/",addNewVisit);
 
-app.delete('/',deleteVisit)
+app.delete("/",deleteVisit);
 
-app.get('/',getAllVisits)
+app.get("/",getAllVisits);
 
-app.put('/',updateVisit)
+app.put("/",updateVisit);
 
 
-export default app
+module.exports =  app;
